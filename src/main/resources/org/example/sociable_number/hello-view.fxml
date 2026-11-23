@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.sociable_number.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.sociable_number.HelloController" spacing="10">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label text="Sociable Number" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <VBox spacing="4">
+        <HBox alignment="BOTTOM_LEFT" spacing="12">
+            <VBox spacing="4" HBox.hgrow="ALWAYS">
+                <Label text="Upper limit (num)" labelFor="${upperLimit}"/>
+                <TextField fx:id="upperLimit"/>
+            </VBox>
+            <VBox minWidth="120" prefWidth="120" maxWidth="120" spacing="4">
+                <Label text="Threads (cnt)" labelFor="${threadCount}"/>
+                <TextField fx:id="threadCount"/>
+            </VBox>
+            <Button fx:id="startButton" text="Start" onAction="#startRun"
+                    defaultButton="true" minWidth="80"/>
+            <Button fx:id="stopButton" text="Stop" onAction="#stopRun" minWidth="80"/>
+        </HBox>
+        <Label fx:id="errorLabel" wrapText="true" style="-fx-text-fill: #a51d26;"/>
+    </VBox>
+    <Separator/>
+    <Label fx:id="statusLabel" wrapText="true"/>
+    <Label text="Thread progress" style="-fx-font-weight: bold;"/>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefViewportHeight="180"
+                minHeight="54" VBox.vgrow="ALWAYS">
+        <FlowPane fx:id="workerPane" hgap="12" vgap="12">
+            <padding>
+                <Insets top="12" right="12" bottom="12" left="12"/>
+            </padding>
+        </FlowPane>
+    </ScrollPane>
+    <Label text="Sociable numbers" labelFor="${resultsArea}" style="-fx-font-weight: bold;"/>
+    <TextArea fx:id="resultsArea" editable="false" wrapText="true" prefHeight="70" minHeight="50"/>
+    <VBox>
+        <Label fx:id="sociableTotal"/>
+        <Label fx:id="otherTotal"/>
+        <Label fx:id="checkedTotal"/>
+    </VBox>
 </VBox>
